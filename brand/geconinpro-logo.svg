@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 132" font-family="Inter, Arial, Helvetica, sans-serif">
+  <rect x="8"  y="52" width="15" height="62"  fill="#9A9188"/>
+  <rect x="27" y="30" width="17" height="84"  fill="#D96C2C"/>
+  <rect x="48" y="14" width="19" height="100" fill="#B14E1E"/>
+  <rect x="71" y="42" width="15" height="72"  fill="#6E655A"/>
+  <text x="112" y="34" font-size="14" letter-spacing="5" fill="#7A7163" font-weight="600" textLength="150" lengthAdjust="spacingAndGlyphs">INVERSIONES</text>
+  <text x="110" y="76" font-size="31" fill="#211D17" font-weight="700" textLength="424" lengthAdjust="spacingAndGlyphs">GECONINPRO I.G. 966 C.A.</text>
+  <rect x="110" y="86" width="424" height="2.5" fill="#B14E1E"/>
+  <text x="112" y="114" font-size="16.5" fill="#4C453B" font-weight="500" textLength="370" lengthAdjust="spacingAndGlyphs">Gerencia, Construcción, Inspección y Proyectos.</text>
+</svg>

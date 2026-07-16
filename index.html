@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geconinpro · Reparación Estructural Post-Sismo en Caracas | Ing. Fernando Lárez</title>
+<meta name="description" content="Evaluación estructural certificada, reparación de fisuras, remodelación y mantenimiento de instalaciones corporativas en Caracas. Ingeniero civil especialista en estructuras, C.I.V. 84.808, 30+ años de experiencia. Empresa formal desde 2005.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,380..640;1,9..144,380..520&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<style>
+/* ============ EDITORIAL / MAGAZINE — Geconinpro ============ */
+:root{
+  --bone:#F2EDE4;
+  --bone-deep:#E9E2D5;
+  --paper:#FAF7F1;
+  --ink:#211D17;
+  --ink-soft:#4C453B;
+  --ink-faint:#7A7163;
+  --rule:#CFC6B5;
+  --rule-soft:#DDD5C6;
+  --clay:#B14E1E;         /* editorial terracotta, AA on bone */
+  --clay-deep:#8F3E16;
+  --wa:#0E7A5A;           /* deep whatsapp green, AA w/ white */
+  --wa-hover:#0A664B;
+  --max:1200px;
+  --serif:"Fraunces", Georgia, "Times New Roman", serif;
+  --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{
+  font-family:var(--sans);
+  font-size:1.0625rem;
+  line-height:1.65;
+  color:var(--ink);
+  background:var(--bone);
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--clay);outline-offset:3px;border-radius:2px}
+::selection{background:var(--clay);color:#fff}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:clamp(1.25rem,4vw,3rem)}
+
+/* subtle paper grain over the whole page */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.045'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+main,header.masthead,footer{position:relative;z-index:1}
+
+/* ---------- typography helpers ---------- */
+.kicker{
+  font-family:var(--sans);font-size:.78rem;font-weight:650;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--clay);display:flex;align-items:center;gap:.75rem;
+}
+.kicker::before{content:"";width:2.4rem;height:1px;background:var(--clay);flex-shrink:0}
+h1,h2,h3{font-family:var(--serif);font-weight:560;line-height:1.06;letter-spacing:-.01em}
+.display{
+  font-size:clamp(2.6rem,7.2vw,5.4rem);
+  font-variation-settings:"opsz" 120;
+}
+.lead{font-size:clamp(1.05rem,1.5vw,1.2rem);color:var(--ink-soft);max-width:38em}
+
+/* ---------- reveal on scroll ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+
+/* ---------- masthead ---------- */
+.topline{
+  background:var(--ink);color:#CFC6B5;font-size:.75rem;letter-spacing:.12em;
+  text-transform:uppercase;text-align:center;padding:.5rem 1rem;font-weight:500;
+}
+.topline strong{color:#fff;font-weight:650}
+header.masthead{
+  position:sticky;top:0;z-index:80;
+  background:color-mix(in srgb, var(--bone) 88%, transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule-soft);
+  transition:box-shadow .3s ease;
+}
+@supports not (backdrop-filter: blur(1px)){header.masthead{background:var(--bone)}}
+header.masthead.scrolled{box-shadow:0 8px 30px rgba(33,29,23,.08)}
+.mast-in{
+  max-width:var(--max);margin:0 auto;padding:.7rem clamp(1.25rem,4vw,3rem);
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.brand{display:flex;align-items:center;min-width:0}
+.brand .glogo{display:block;height:54px;width:auto}
+.mast-actions{display:flex;align-items:center;gap:1.3rem}
+.phone{display:inline-flex;align-items:center;gap:.5rem;font-weight:650;font-size:.95rem;color:var(--ink);white-space:nowrap;transition:color .2s}
+.phone:hover{color:var(--clay)}
+.phone svg{width:1.1em;height:1.1em;fill:var(--clay);flex-shrink:0}
+nav.mainnav{display:flex;gap:1.8rem;font-size:.86rem;font-weight:550}
+nav.mainnav a{color:var(--ink-soft);padding:.3rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+nav.mainnav a:hover{color:var(--clay);border-bottom-color:var(--clay)}
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;font-family:var(--sans);
+  font-weight:650;font-size:.95rem;padding:.8rem 1.5rem;border-radius:999px;
+  border:1px solid transparent;cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 4px 18px rgba(14,122,90,.28)}
+.btn-wa:hover{background:var(--wa-hover);box-shadow:0 8px 26px rgba(14,122,90,.36)}
+.btn-ghost{border-color:var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--bone)}
+.btn svg{width:1.15em;height:1.15em;fill:currentColor;flex-shrink:0}
+.mast-in .btn{padding:.62rem 1.2rem;font-size:.88rem}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(3rem,7vw,6rem) 0 clamp(3rem,6vw,5rem)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.hero h1{margin:1.2rem 0 1.4rem}
+.hero h1 em{font-style:italic;font-weight:480;color:var(--clay)}
+.hero .lead{margin-bottom:2.2rem}
+.hero-ctas{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+.hero-fig{position:relative}
+.hero-fig img{width:100%;aspect-ratio:3/3.6;object-fit:cover;border-radius:4px;border:1px solid rgba(33,29,23,.16)}
+.hero-fig figcaption{
+  margin-top:.8rem;font-size:.8rem;color:var(--ink-faint);line-height:1.5;
+  display:flex;gap:.6rem;
+}
+.hero-fig figcaption::before{content:"";width:1.6rem;height:1px;background:var(--clay);margin-top:.55em;flex-shrink:0}
+.hero-fig .fig-stamp{
+  position:absolute;top:1rem;left:1rem;background:var(--paper);color:var(--ink);
+  font-size:.68rem;font-weight:650;letter-spacing:.14em;text-transform:uppercase;
+  padding:.45rem .8rem;border-radius:2px;box-shadow:0 2px 10px rgba(33,29,23,.15);
+}
+
+/* credentials rule-line */
+.cred-line{
+  margin-top:clamp(2.5rem,5vw,4rem);border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.cred-line div{padding:1.1rem .5rem 0 0;border-right:1px solid var(--rule-soft);padding-inline:1rem}
+.cred-line div:first-child{padding-left:0}
+.cred-line div:last-child{border-right:0}
+.cred-line b{display:block;font-family:var(--serif);font-size:1.25rem;font-weight:600;line-height:1.2}
+.cred-line span{font-size:.78rem;color:var(--ink-faint);letter-spacing:.06em;text-transform:uppercase;font-weight:550}
+
+/* ---------- crack divider ---------- */
+.crack-divider{display:block;width:100%;height:34px;color:var(--rule);margin:0}
+
+/* ---------- chapter opener (magazine feature intro) ---------- */
+.feature-open{padding:clamp(3.5rem,7vw,6.5rem) 0 clamp(2rem,4vw,3rem)}
+.feature-open h2{font-size:clamp(2.1rem,5vw,3.8rem);margin:1.1rem 0 1.3rem;max-width:16em}
+.feature-open h2 em{font-style:italic;font-weight:480;color:var(--clay)}
+.stat-strip{
+  margin-top:clamp(2rem,4vw,3rem);display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.stat-strip div{padding:1.4rem 1rem;text-align:center;border-right:1px solid var(--rule-soft)}
+.stat-strip div:last-child{border-right:0}
+.stat-strip b{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3rem);font-weight:600;display:block;line-height:1;font-variation-settings:"opsz" 90}
+.stat-strip b sup{font-size:.45em;color:var(--clay)}
+.stat-strip span{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+
+/* ---------- chapters: sticky text + scrolling imagery ---------- */
+.chapter{padding:clamp(2.5rem,6vw,5.5rem) 0}
+.chapter + .chapter{border-top:1px solid var(--rule-soft)}
+.ch-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,5vw,5rem);align-items:start}
+.ch-sticky{position:sticky;top:110px}
+.ch-num{
+  font-family:var(--serif);font-size:clamp(4.5rem,9vw,7.5rem);font-weight:400;
+  line-height:.9;color:transparent;-webkit-text-stroke:1px var(--rule);
+  font-variation-settings:"opsz" 144;user-select:none;
+}
+.chapter h3{font-size:clamp(1.8rem,3.4vw,2.7rem);margin:.6rem 0 1rem}
+.chapter h3 em{font-style:italic;font-weight:480;color:var(--clay)}
+.ch-body{color:var(--ink-soft);max-width:34em}
+.ch-body p+p{margin-top:1em}
+.ch-note{
+  margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid var(--rule);
+  font-size:.86rem;color:var(--ink-faint);line-height:1.55;max-width:34em;
+}
+.ch-note b{color:var(--ink)}
+.ch-media{display:grid;gap:clamp(1rem,2vw,1.6rem)}
+.ch-media figure{position:relative;border-radius:4px;overflow:hidden;background:var(--bone-deep)}
+.ch-media img,.ch-media video{width:100%;display:block;object-fit:cover}
+.ch-media .tall img{aspect-ratio:4/3.4}
+.ch-media .duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2vw,1.6rem)}
+.ch-media .duo img{aspect-ratio:3/3.4;height:100%}
+.ch-media figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:2.2rem 1rem .8rem;
+  background:linear-gradient(transparent,rgba(20,17,12,.72));
+  color:#F2EDE4;font-size:.78rem;letter-spacing:.04em;font-weight:500;
+}
+.ch-media video{aspect-ratio:16/10;background:#14110C}
+.ch-media .duo video{aspect-ratio:3/3.4;height:100%}
+.video-tag{
+  position:absolute;top: .85rem;left:.85rem;z-index:2;pointer-events:none;
+  background:rgba(20,17,12,.78);color:#F2EDE4;font-size:.66rem;font-weight:650;
+  letter-spacing:.16em;text-transform:uppercase;padding:.4rem .7rem;border-radius:2px;
+  display:flex;align-items:center;gap:.45rem;
+}
+.video-tag::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:var(--clay)}
+
+/* ---------- pull quote ---------- */
+.pullquote{padding:clamp(3.5rem,8vw,7rem) 0;text-align:center}
+.pullquote blockquote{
+  font-family:var(--serif);font-style:italic;font-weight:460;
+  font-size:clamp(1.7rem,4.4vw,3.2rem);line-height:1.25;max-width:22em;margin:0 auto;
+  font-variation-settings:"opsz" 100;
+}
+.pullquote blockquote strong{color:var(--clay);font-weight:600}
+.pullquote .pq-rule{width:3.5rem;height:2px;background:var(--clay);margin:0 auto 2rem}
+.pullquote cite{
+  display:block;margin-top:1.8rem;font-family:var(--sans);font-style:normal;
+  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;
+}
+
+/* ---------- services: thin-rule index table ---------- */
+.services{background:var(--paper);border-block:1px solid var(--rule-soft);padding:clamp(3.5rem,7vw,6.5rem) 0}
+.services h2{font-size:clamp(2rem,4.5vw,3.4rem);margin:1.1rem 0 .9rem}
+.svc-list{margin-top:clamp(2rem,4vw,3rem);border-top:1px solid var(--rule)}
+.svc-row{
+  display:grid;grid-template-columns:4.5rem minmax(0,1fr) minmax(0,1.5fr);
+  gap:1.5rem;align-items:baseline;padding:1.6rem 0;border-bottom:1px solid var(--rule);
+  transition:background .25s,padding-left .25s;
+}
+@media (hover:hover){
+  .svc-row:hover{background:linear-gradient(90deg,rgba(177,78,30,.06),transparent 70%);padding-left:.8rem}
+}
+.svc-row .n{font-family:var(--serif);font-style:italic;color:var(--clay);font-size:1.05rem}
+.svc-row h3{font-size:clamp(1.15rem,2vw,1.5rem);font-weight:560}
+.svc-row p{color:var(--ink-soft);font-size:.98rem}
+
+/* ---------- differentiator ---------- */
+.difference{background:var(--bone-deep);padding:clamp(3.5rem,7vw,6rem) 0}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem 3.5rem;margin-top:2.6rem}
+.diff{border-top:2px solid var(--ink);padding-top:1.15rem}
+.diff h3{font-size:1.18rem;font-weight:600;margin-bottom:.55rem;display:flex;gap:.6rem;align-items:baseline}
+.diff h3 .dn{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--clay);font-size:1rem;flex-shrink:0}
+.diff p{font-size:.95rem;color:var(--ink-soft)}
+@media (max-width:760px){.diff-grid{grid-template-columns:1fr;gap:1.9rem}}
+
+/* ---------- corporate ---------- */
+.biz .biz-cta{margin-top:2.4rem}
+
+/* ---------- full-bleed interlude ---------- */
+.interlude{position:relative;min-height:min(92vh,780px);overflow:clip;display:flex;align-items:flex-end}
+.interlude .bg{position:absolute;inset:-12% 0;z-index:0}
+.interlude .bg img{width:100%;height:100%;object-fit:cover}
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .interlude .bg{animation:parallax linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+    @keyframes parallax{from{transform:translateY(-5%)}to{transform:translateY(5%)}}
+  }
+}
+.interlude::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(185deg,rgba(20,17,12,.18) 30%,rgba(20,17,12,.78) 100%);
+}
+.interlude .wrap{position:relative;z-index:2;padding-block:clamp(2.5rem,6vw,4.5rem);width:100%}
+.interlude .kicker{color:#E9C4A8}
+.interlude .kicker::before{background:#E9C4A8}
+.interlude h2{color:#F7F3EB;font-size:clamp(2.2rem,5.5vw,4.2rem);max-width:14em;margin-top:1rem}
+.interlude h2 em{font-style:italic;font-weight:460;color:#E9C4A8}
+.interlude p{color:rgba(247,243,235,.85);margin-top:1rem;max-width:36em;font-size:.98rem}
+
+/* ---------- portfolio ---------- */
+.portfolio{padding:clamp(3.5rem,7vw,6.5rem) 0}
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2vw,1.6rem);margin-top:clamp(2rem,4vw,3rem)}
+.pf-grid figure{position:relative;border-radius:4px;overflow:hidden;background:var(--bone-deep)}
+.pf-grid img{width:100%;aspect-ratio:4/4.6;object-fit:cover;transition:transform .8s cubic-bezier(.22,.61,.36,1)}
+@media (hover:hover) and (prefers-reduced-motion: no-preference){
+  .pf-grid figure:hover img{transform:scale(1.04)}
+}
+.pf-grid figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:2.2rem 1rem .8rem;
+  background:linear-gradient(transparent,rgba(20,17,12,.7));
+  color:#F2EDE4;font-size:.78rem;letter-spacing:.04em;font-weight:500;
+}
+.clients{margin-top:clamp(2.5rem,5vw,4rem)}
+.clients p.cl-label{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:.4rem}
+.client-index{border-top:1px solid var(--rule)}
+.client-index li{
+  list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  padding:1.05rem 0;border-bottom:1px solid var(--rule);
+}
+.client-index .cname{font-family:var(--serif);font-size:clamp(1.15rem,2.4vw,1.7rem);font-weight:520}
+.client-index .ctype{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;text-align:right;flex-shrink:0}
+
+/* ---------- engineer trust block ---------- */
+.engineer{background:var(--ink);color:var(--bone);padding:clamp(3.5rem,8vw,7rem) 0;position:relative;overflow:clip}
+.engineer::before{
+  content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' fill='white'/%3E%3C/svg%3E");
+}
+.engineer .wrap{position:relative}
+.engineer .kicker{color:#E9C4A8}
+.engineer .kicker::before{background:#E9C4A8}
+.eng-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(2.5rem,6vw,5rem);align-items:start;margin-top:1.2rem}
+.eng-grid h2{font-size:clamp(2rem,4.5vw,3.4rem);color:#F7F3EB}
+.eng-grid h2 em{font-style:italic;font-weight:460;color:#E9C4A8}
+.eng-sign{
+  margin-top:2rem;display:flex;align-items:center;gap:1.2rem;
+}
+.monogram{
+  width:76px;height:76px;flex-shrink:0;border:1px solid rgba(242,237,228,.35);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-style:italic;font-size:1.7rem;color:#E9C4A8;
+}
+.eng-sign .who b{display:block;font-family:var(--serif);font-size:1.3rem;font-weight:560;color:#F7F3EB}
+.eng-sign .who span{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,237,228,.6);font-weight:550}
+.eng-facts{border-top:1px solid rgba(242,237,228,.22)}
+.eng-facts div{
+  display:grid;grid-template-columns:minmax(7rem,10rem) 1fr;gap:1rem;
+  padding:1.15rem 0;border-bottom:1px solid rgba(242,237,228,.22);
+}
+.eng-facts dt{font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:#E9C4A8;font-weight:650;padding-top:.25rem}
+.eng-facts dd{color:rgba(242,237,228,.92);font-size:.98rem}
+.eng-facts dd b{color:#fff}
+
+/* ---------- final CTA ---------- */
+.cta-final{padding:clamp(4rem,9vw,7.5rem) 0;text-align:center}
+.cta-final h2{font-size:clamp(2.3rem,6vw,4.4rem);max-width:14em;margin:1.1rem auto 1.2rem}
+.cta-final h2 em{font-style:italic;font-weight:480;color:var(--clay)}
+.cta-final .kicker{justify-content:center}
+.cta-final .kicker::after{content:"";width:2.4rem;height:1px;background:var(--clay);flex-shrink:0}
+.cta-final .lead{margin:0 auto 2.4rem}
+.cta-final .btn-wa{font-size:1.1rem;padding:1.05rem 2.2rem}
+.cta-contacts{
+  margin-top:clamp(2.5rem,5vw,3.5rem);border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:repeat(3,1fr);max-width:820px;margin-inline:auto;
+}
+.cta-contacts>*{padding:1.2rem .8rem 0;border-right:1px solid var(--rule-soft);font-size:.95rem;color:var(--ink-soft)}
+.cta-contacts>*:last-child{border-right:0}
+.cta-contacts b{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.25rem;font-weight:650}
+.cta-contacts a:hover{color:var(--clay)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--rule);padding:2rem 0 6.5rem;font-size:.82rem;color:var(--ink-faint)}
+.foot-in{display:flex;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;align-items:center}
+.foot-in .glogo{display:block;height:46px;width:auto}
+
+/* ---------- floating WhatsApp ---------- */
+.wa-float{
+  position:fixed;bottom:1.3rem;right:1.3rem;z-index:90;
+  width:62px;height:62px;border-radius:50%;background:var(--wa);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 24px rgba(14,122,90,.45);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.wa-float:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 10px 30px rgba(14,122,90,.5)}
+.wa-float svg{width:32px;height:32px;fill:#fff}
+.wa-float .pulse{position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa)}
+@media (prefers-reduced-motion: no-preference){
+  .wa-float .pulse{animation:pulse 2.6s ease-out infinite}
+  @keyframes pulse{0%{transform:scale(1);opacity:.7}70%{transform:scale(1.55);opacity:0}100%{transform:scale(1.55);opacity:0}}
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:1000px){
+  nav.mainnav{display:none}
+  .ch-grid{grid-template-columns:1fr;gap:1.8rem}
+  .ch-sticky{position:static}
+  .eng-grid{grid-template-columns:1fr}
+  .svc-row{grid-template-columns:3rem minmax(0,1fr)}
+  .svc-row p{grid-column:2}
+}
+@media (max-width:760px){
+  .hero-grid{grid-template-columns:1fr;gap:2.2rem}
+  .hero-fig img{aspect-ratio:4/3.4}
+  .cred-line{grid-template-columns:1fr 1fr}
+  .cred-line div{border-right:0;padding-left:0}
+  .cred-line div:nth-child(odd){border-right:1px solid var(--rule-soft)}
+  .cred-line div:nth-child(even){padding-left:1rem}
+  .brand .glogo{height:46px}
+  .phone .ptxt{display:none}
+  .phone svg{width:1.35em;height:1.35em}
+  .mast-actions{gap:1rem}
+  .pf-grid{grid-template-columns:1fr}
+  .pf-grid img{aspect-ratio:4/3.2}
+  .ch-media .duo{grid-template-columns:1fr 1fr}
+  .cta-contacts{grid-template-columns:1fr;border-top:0;max-width:100%}
+  .cta-contacts>*{border-right:0;border-top:1px solid var(--rule-soft);padding:1.1rem 0 0;margin-top:1.1rem}
+  .eng-facts div{grid-template-columns:1fr;gap:.25rem}
+  .eng-facts dt{padding-top:0}
+  .topline{font-size:.66rem;letter-spacing:.08em}
+  .mast-in .btn span.btxt{display:none}
+  .mast-in .btn{padding:.62rem .8rem}
+}
+@media (max-width:560px){
+  .brand .glogo{height:38px}
+}
+@media (max-width:420px){
+  .ch-media .duo{grid-template-columns:1fr}
+  .stat-strip{grid-template-columns:1fr}
+  .stat-strip div{border-right:0;border-bottom:1px solid var(--rule-soft)}
+  .stat-strip div:last-child{border-bottom:0}
+}
+</style>
+</head>
+<body>
+
+<!-- top line -->
+<p class="topline"><strong>Atención post-sismo</strong> · Caracas y nivel nacional · Respuesta por WhatsApp</p>
+
+<header class="masthead" id="top">
+  <div class="mast-in">
+    <a class="brand" href="#top" aria-label="Inversiones Geconinpro — inicio">
+      <svg class="glogo" viewBox="0 0 560 132" role="img" aria-label="Inversiones Geconinpro I.G. 966 C.A. — Gerencia, Construcción, Inspección y Proyectos" font-family="Inter, Arial, Helvetica, sans-serif">
+        <rect x="8"  y="52" width="15" height="62"  fill="#9A9188"/>
+        <rect x="27" y="30" width="17" height="84"  fill="#D96C2C"/>
+        <rect x="48" y="14" width="19" height="100" fill="#B14E1E"/>
+        <rect x="71" y="42" width="15" height="72"  fill="#6E655A"/>
+        <text x="112" y="34" font-size="14" letter-spacing="5" fill="#7A7163" font-weight="600" textLength="150" lengthAdjust="spacingAndGlyphs">INVERSIONES</text>
+        <text x="110" y="76" font-size="31" fill="#211D17" font-weight="700" textLength="424" lengthAdjust="spacingAndGlyphs">GECONINPRO I.G. 966 C.A.</text>
+        <rect x="110" y="86" width="424" height="2.5" fill="#B14E1E"/>
+        <text x="112" y="114" font-size="16.5" fill="#4C453B" font-weight="500" textLength="370" lengthAdjust="spacingAndGlyphs">Gerencia, Construcción, Inspección y Proyectos.</text>
+      </svg>
+    </a>
+    <nav class="mainnav" aria-label="Navegación principal">
+      <a href="#caso">El caso Sebucán</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#obras">Obras</a>
+      <a href="#empresas">Empresas</a>
+      <a href="#ingeniero">El ingeniero</a>
+    </nav>
+    <div class="mast-actions">
+      <a class="phone" href="tel:+584142352430" aria-label="Llámanos: 0414-235-24-30">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+        <span class="ptxt">0414-235-24-30</span>
+      </a>
+      <a class="btn btn-wa" href="https://wa.me/584142352430?text=Hola%2C%20vi%20su%20p%C3%A1gina%20y%20necesito%20una%20evaluaci%C3%B3n%20de%20da%C3%B1os%20estructurales." target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.7 6L4 29l8.2-1.6c1.2.6 2.5.9 3.8.9 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.2 0-2.4-.3-3.5-.8l-.5-.3-4.9 1 1-4.7-.3-.5c-1-1.6-1.5-3.4-1.5-5.4 0-5.4 4.4-9.8 9.8-9.8s9.8 4.4 9.8 9.8-4.5 9.7-9.9 9.7zm5.4-7.3c-.3-.1-1.7-.9-2-1s-.5-.1-.7.1c-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1s-1.2-.5-2.3-1.4c-.9-.8-1.4-1.7-1.6-2s0-.4.1-.6c.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5s0-.4 0-.5-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>
+        <span class="btxt">WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="kicker rv">Sismos del 24 de junio · Caracas</p>
+        <h1 class="display rv rv-d1" id="hero-title">¿Grietas en tu casa? Se reparan <em>con criterio de ingeniero.</em></h1>
+        <p class="lead rv rv-d2">Presupuestamos y ejecutamos la reparación de fisuras, resane y refuerzo estructural de edificaciones afectadas por los sismos. Cada obra la dirige y la firma un ingeniero civil especialista en estructuras, con más de 30 años de experiencia.</p>
+        <div class="hero-ctas rv rv-d3">
+          <a class="btn btn-wa" href="https://wa.me/584142352430?text=Hola%2C%20vi%20su%20p%C3%A1gina%20y%20necesito%20una%20evaluaci%C3%B3n%20de%20da%C3%B1os%20estructurales." target="_blank" rel="noopener">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.7 6L4 29l8.2-1.6c1.2.6 2.5.9 3.8.9 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.2 0-2.4-.3-3.5-.8l-.5-.3-4.9 1 1-4.7-.3-.5c-1-1.6-1.5-3.4-1.5-5.4 0-5.4 4.4-9.8 9.8-9.8s9.8 4.4 9.8 9.8-4.5 9.7-9.9 9.7zm5.4-7.3c-.3-.1-1.7-.9-2-1s-.5-.1-.7.1c-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1s-1.2-.5-2.3-1.4c-.9-.8-1.4-1.7-1.6-2s0-.4.1-.6c.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5s0-.4 0-.5-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>
+            Solicitar evaluación
+          </a>
+          <a class="btn btn-ghost" href="#caso">Ver el caso Sebucán ↓</a>
+        </div>
+      </div>
+      <figure class="hero-fig rv rv-d2">
+        <span class="fig-stamp">Sebucán · Junio 2026</span>
+        <img src="img/apto-antes-3.jpg" alt="Pared con la capa de friso desprendida y grietas estructurales tras el sismo, apartamento en Sebucán" fetchpriority="high">
+        <figcaption>Así quedó esta pared en Sebucán tras los sismos del 24 de junio. Tres días después estaba reparada, pintada y habitada. La historia completa, abajo.</figcaption>
+      </figure>
+    </div>
+
+    <div class="cred-line rv" role="list" aria-label="Credenciales">
+      <div role="listitem"><b>Ing. Fernando Lárez</b><span>C.I.V. 84.808</span></div>
+      <div role="listitem"><b>UCV · 1992</b><span>Mención Estructuras</span></div>
+      <div role="listitem"><b>+30 años</b><span>de experiencia</span></div>
+      <div role="listitem"><b>Caracas</b><span>y nivel nacional</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- crack motif divider -->
+<svg class="crack-divider" viewBox="0 0 1200 34" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 17 H430 l14 -9 11 14 9 -11 13 9 10 -14 12 17 9 -9 14 6 11 -12 13 12 10 -7 12 9 H1200" fill="none" stroke="currentColor" stroke-width="1.5"/>
+</svg>
+
+<!-- ============ FEATURE OPENER ============ -->
+<section class="feature-open" id="caso" aria-labelledby="caso-title">
+  <div class="wrap">
+    <p class="kicker rv">Caso documentado · Apartamento en Sebucán</p>
+    <h2 class="rv rv-d1" id="caso-title">Del sismo a la sala recuperada, <em>en tres días.</em></h2>
+    <p class="lead rv rv-d2">El 24 de junio, los sismos dejaron fisuras estructurales y de tabiquería en este apartamento. Lo que sigue es el registro completo de la intervención, en tres capítulos: el daño, la reparación y el resultado.</p>
+
+    <div class="stat-strip rv rv-d2">
+      <div><b><span data-count="3">0</span></b><span>días de obra</span></div>
+      <div><b><span data-count="30">0</span><sup>+</sup></b><span>años de experiencia</span></div>
+      <div><b><span data-count="2005">1900</span></b><span>fundada la firma</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 01 ============ -->
+<article class="chapter" aria-labelledby="ch1-title">
+  <div class="wrap ch-grid">
+    <div class="ch-sticky">
+      <p class="ch-num" aria-hidden="true">01</p>
+      <h3 id="ch1-title">El daño, <em>sin maquillaje.</em></h3>
+      <div class="ch-body">
+        <p>Grietas diagonales en la pared principal, friso desprendido y fisuras extendidas en la tabiquería. Es el tipo de daño que asusta, y con razón: no toda grieta es cosmética.</p>
+        <p>Por eso el primer paso nunca es pintar por encima. Es <strong>diagnosticar</strong>: entender qué se agrietó, por qué, y si el elemento afectado cumple una función estructural.</p>
+      </div>
+      <p class="ch-note"><b>Nota técnica:</b> el diagnóstico define si corresponde resane de tabiquería o refuerzo estructural. Se documenta antes de intervenir.</p>
+    </div>
+    <div class="ch-media">
+      <figure class="tall rv">
+        <img src="img/apto-antes-3.jpg" alt="Franja ancha de friso destruido atravesando la pared principal tras el sismo" loading="lazy">
+        <figcaption>Pared principal: la banda de friso desprendida revela la trayectoria del daño.</figcaption>
+      </figure>
+      <div class="duo">
+        <figure class="rv"><img src="img/apto-antes-1.jpg" alt="Fisuras extendidas sobre una pared del apartamento" loading="lazy"><figcaption>Fisuras extendidas</figcaption></figure>
+        <figure class="rv rv-d1"><img src="img/apto-antes-2.jpg" alt="Detalle de fisura vertical en la pared" loading="lazy"><figcaption>Detalle de fisura</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ CHAPTER 02 ============ -->
+<article class="chapter" aria-labelledby="ch2-title">
+  <div class="wrap ch-grid">
+    <div class="ch-sticky">
+      <p class="ch-num" aria-hidden="true">02</p>
+      <h3 id="ch2-title">La reparación, <em>paso a paso.</em></h3>
+      <div class="ch-body">
+        <p>Se abrió, saneó y trató cada fisura; luego, resane estructural con friso nuevo sobre la superficie completa. Nada de parches: la pared se recupera como sistema, no grieta por grieta.</p>
+        <p>Mientras tanto, la familia siguió en su casa: los muebles se protegieron y el área de trabajo se aisló cada día.</p>
+      </div>
+      <p class="ch-note"><b>Con respaldo:</b> ejecución bajo la dirección del Ing. Fernando Lárez, aplicando normas COVENIN.</p>
+    </div>
+    <div class="ch-media">
+      <figure class="tall rv">
+        <img src="img/apto-durante-1.jpg" alt="Resane estructural: friso gris fresco aplicado sobre la pared dañada" loading="lazy">
+        <figcaption>Resane estructural: friso nuevo sobre la superficie completa.</figcaption>
+      </figure>
+      <div class="duo">
+        <figure class="rv"><img src="img/apto-durante-2.jpg" alt="Primer plano del tratamiento de una fisura antes del friso" loading="lazy"><figcaption>Tratamiento de fisuras</figcaption></figure>
+        <figure class="rv rv-d1">
+          <span class="video-tag">Video · proceso</span>
+          <video src="video/reparacion-proceso.mp4" controls preload="none" playsinline poster="img/apto-durante-2.jpg" aria-label="Video del proceso de reparación de las fisuras"></video>
+          <figcaption>El proceso de reparación, en movimiento.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ CHAPTER 03 ============ -->
+<article class="chapter" aria-labelledby="ch3-title">
+  <div class="wrap ch-grid">
+    <div class="ch-sticky">
+      <p class="ch-num" aria-hidden="true">03</p>
+      <h3 id="ch3-title">El resultado: <em>como nuevo.</em></h3>
+      <div class="ch-body">
+        <p>Setenta y dos horas después del primer día de obra: fisuras resanadas, paredes lisas y pintadas, espacio habilitado. Sin mudanzas, sin semanas de polvo, sin incertidumbre.</p>
+        <p>Ese es el estándar: entregar la casa <strong>lista para vivirla</strong>, no “casi terminada”.</p>
+      </div>
+      <p class="ch-note"><b>Resultado:</b> trabajo completado en 3 días, con acabado final pintado y espacio habilitado.</p>
+    </div>
+    <div class="ch-media">
+      <figure class="tall rv">
+        <img src="img/apto-despues-2.jpg" alt="Pared reparada, perfectamente lisa y repintada" loading="lazy">
+        <figcaption>La misma pared: lisa, pintada, sin rastro del daño.</figcaption>
+      </figure>
+      <div class="duo">
+        <figure class="rv"><img src="img/apto-despues-1.jpg" alt="Habitación reparada con los muebles protegidos durante la obra" loading="lazy"><figcaption>Espacio habilitado</figcaption></figure>
+        <figure class="rv rv-d1">
+          <span class="video-tag">Video · resultado</span>
+          <video src="video/resultado-final.mp4" controls preload="none" playsinline poster="img/apto-despues-1.jpg" aria-label="Video recorriendo la habitación ya reparada"></video>
+          <figcaption>Recorrido por el espacio terminado.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ PULL QUOTE ============ -->
+<section class="pullquote" aria-label="Cita destacada">
+  <div class="wrap rv">
+    <div class="pq-rule"></div>
+    <blockquote>“Una grieta se tapa en una tarde. Repararla bien, con criterio estructural, es lo que te deja <strong>dormir tranquilo</strong>.”</blockquote>
+    <cite>Ing. Fernando Lárez · Director Técnico</cite>
+  </div>
+</section>
+
+<!-- ============ DIFFERENTIATOR ============ -->
+<section class="difference" id="diferencia" aria-labelledby="diff-title">
+  <div class="wrap">
+    <p class="kicker rv">La diferencia Geconinpro</p>
+    <h2 class="rv rv-d1" id="diff-title" style="font-size:clamp(2rem,4.5vw,3.4rem);margin-top:1.1rem">Cualquiera tapa una grieta. <em>Pocos pueden firmar lo que hay detrás.</em></h2>
+    <div class="diff-grid">
+      <div class="diff rv">
+        <h3><span class="dn">i.</span> Informe técnico con firma de ingeniero</h3>
+        <p>Un albañil resana la pared. Nosotros certificamos qué la causó y si tu estructura es segura: un documento con firma de ingeniero colegiado, válido ante juntas de condominio, aseguradoras y compraventas.</p>
+      </div>
+      <div class="diff rv rv-d1">
+        <h3><span class="dn">ii.</span> Empresa formal, no un contacto informal</h3>
+        <p>Constituida desde 2005: RIF, facturación fiscal y solvencias. Puedes contratarnos como proveedor corporativo, con contrato, garantía y un responsable legal que responde.</p>
+      </div>
+      <div class="diff rv rv-d2">
+        <h3><span class="dn">iii.</span> Estructuras calculadas, no adivinadas</h3>
+        <p>Ingeniero civil UCV, mención estructuras, C.I.V. 84.808, más de 30 años de obra. Trabajamos bajo normas COVENIN y lo respaldamos por escrito.</p>
+      </div>
+      <div class="diff rv rv-d3">
+        <h3><span class="dn">iv.</span> Todas las especialidades, un solo responsable</h3>
+        <p>Obra civil, electricidad, vidrio, sistemas contra incendio y seguridad. Coordinamos todo el proyecto de principio a fin: tú respondes ante uno, no ante cinco.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="servicios" aria-labelledby="serv-title">
+  <div class="wrap">
+    <p class="kicker rv">Índice de servicios</p>
+    <h2 class="rv rv-d1" id="serv-title">Del diagnóstico a la entrega, <em>con una sola firma responsable.</em></h2>
+    <div class="svc-list">
+      <div class="svc-row rv">
+        <span class="n" aria-hidden="true">01</span>
+        <h3>Evaluación estructural certificada</h3>
+        <p>Diagnóstico e informe técnico firmado por ingeniero colegiado: la base para decidir con seguridad después de un sismo, antes de comprar o ante tu junta de condominio.</p>
+      </div>
+      <div class="svc-row rv">
+        <span class="n" aria-hidden="true">02</span>
+        <h3>Reparación de fisuras y refuerzo estructural</h3>
+        <p>Resane, reparación y rehabilitación de elementos dañados bajo normas COVENIN, con acabado final pintado, listo para habitar.</p>
+      </div>
+      <div class="svc-row rv">
+        <span class="n" aria-hidden="true">03</span>
+        <h3>Remodelación y construcción</h3>
+        <p>Obras civiles integrales para hogares y comercios: de la planificación y el diseño a la entrega, dirigidas por una sola firma responsable.</p>
+      </div>
+      <div class="svc-row rv">
+        <span class="n" aria-hidden="true">04</span>
+        <h3>Mantenimiento de instalaciones para empresas</h3>
+        <p>Adecuación de oficinas y galpones, techos industriales, electricidad, sistemas contra incendio y seguridad. El aliado permanente detrás de sus sedes.</p>
+      </div>
+      <div class="svc-row rv">
+        <span class="n" aria-hidden="true">05</span>
+        <h3>Presupuestos APU y gerencia de proyectos</h3>
+        <p>Análisis de Precios Unitarios formal: sabes exactamente qué pagas y por qué. Gerencia de obra, procura y control de cronogramas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FULL-BLEED INTERLUDE ============ -->
+<section class="interlude" aria-labelledby="inter-title">
+  <div class="bg">
+    <img src="img/casa-1.jpg" alt="Escalera flotante de madera y vidrio bañada por la luz del jardín, remodelación integral en Caracas" loading="lazy">
+  </div>
+  <div class="wrap">
+    <p class="kicker">Obras · Remodelación integral</p>
+    <h2 id="inter-title">No solo reparamos. <em>Construimos.</em></h2>
+    <p>Escalera flotante en madera y vidrio: remodelación integral de vivienda en Caracas, dirigida por Geconinpro de principio a fin.</p>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section class="portfolio" id="obras" aria-labelledby="obras-title">
+  <div class="wrap">
+    <p class="kicker rv">Portafolio</p>
+    <h2 class="rv rv-d1" id="obras-title" style="font-size:clamp(2rem,4.5vw,3.4rem);margin-top:1.1rem">La misma exigencia, <em>en cada detalle.</em></h2>
+    <div class="pf-grid">
+      <figure class="rv"><img src="img/casa-2.jpg" alt="Detalle de la escalera flotante con barandas de vidrio" loading="lazy"><figcaption>Detalle: barandas de vidrio</figcaption></figure>
+      <figure class="rv rv-d1"><img src="img/casa-3.jpg" alt="Fachada de la vivienda revestida en piedra natural" loading="lazy"><figcaption>Fachada en piedra natural</figcaption></figure>
+      <figure class="rv rv-d2"><img src="img/casa-4.jpg" alt="Terraza con deck de madera" loading="lazy"><figcaption>Terraza con deck de madera</figcaption></figure>
+    </div>
+
+    <div class="clients rv">
+      <p class="cl-label">Han confiado en nosotros · desde 2005</p>
+      <ul class="client-index">
+        <li><span class="cname">DHL Express</span><span class="ctype">Empresa</span></li>
+        <li><span class="cname">Asamblea Nacional</span><span class="ctype">Institución</span></li>
+        <li><span class="cname">Residencias y quintas en Caracas</span><span class="ctype">Hogares</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CORPORATE ============ -->
+<section class="difference biz" id="empresas" aria-labelledby="biz-title">
+  <div class="wrap">
+    <p class="kicker rv">Para empresas e instituciones</p>
+    <h2 class="rv rv-d1" id="biz-title" style="font-size:clamp(2rem,4.5vw,3.4rem);margin-top:1.1rem">El contratista de confianza <em>detrás de sus instalaciones.</em></h2>
+    <p class="lead rv" style="margin-top:1.4rem">Durante años fuimos el aliado de infraestructura de <strong>DHL Express</strong> en Venezuela: oficinas, galpones de despacho, techos industriales, fachadas, planimetría para inspección bomberil de 15.000 m² y sistemas de seguridad. Conocemos los estándares corporativos: presupuestos APU, cumplimiento, solvencias y respuesta rápida, todo con un solo proveedor.</p>
+    <div class="clients rv">
+      <p class="cl-label">Lo que hacemos por una sede corporativa</p>
+      <ul class="client-index">
+        <li><span class="cname">Adecuación de oficinas y galpones</span><span class="ctype">Obra civil</span></li>
+        <li><span class="cname">Techos industriales y fachadas</span><span class="ctype">Obra civil</span></li>
+        <li><span class="cname">Planimetría e inspección bomberil</span><span class="ctype">Ingeniería</span></li>
+        <li><span class="cname">Electricidad, voz y data, CCTV</span><span class="ctype">Instalaciones</span></li>
+        <li><span class="cname">Sistemas contra incendio</span><span class="ctype">Instalaciones</span></li>
+        <li><span class="cname">Procura y mobiliario a la medida</span><span class="ctype">Servicios</span></li>
+      </ul>
+    </div>
+    <div class="biz-cta rv">
+      <a class="btn btn-ghost" href="https://wa.me/584142352430?text=Hola%2C%20le%20escribo%20de%20parte%20de%20una%20empresa%3A%20quisiera%20informaci%C3%B3n%20sobre%20mantenimiento%20y%20adecuaci%C3%B3n%20de%20instalaciones." target="_blank" rel="noopener">Conversemos sobre su plan de mantenimiento →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ENGINEER ============ -->
+<section class="engineer" id="ingeniero" aria-labelledby="ing-title">
+  <div class="wrap">
+    <p class="kicker rv">¿Quién responde por tu obra?</p>
+    <div class="eng-grid">
+      <div class="rv rv-d1">
+        <h2 id="ing-title">Aquí sabes exactamente <em>quién firma.</em></h2>
+        <div class="eng-sign">
+          <span class="monogram" aria-hidden="true">FL</span>
+          <p class="who">
+            <b>Ing. Fernando J. Lárez Marín</b>
+            <span>Director Técnico</span>
+          </p>
+        </div>
+      </div>
+      <dl class="eng-facts rv rv-d2">
+        <div>
+          <dt>Formación</dt>
+          <dd>Ingeniero Civil, Universidad Central de Venezuela (1992), <b>Mención Estructuras</b></dd>
+        </div>
+        <div>
+          <dt>Colegiatura</dt>
+          <dd>Colegio de Ingenieros de Venezuela: <b>C.I.V. 84.808</b></dd>
+        </div>
+        <div>
+          <dt>Trayectoria</dt>
+          <dd>Más de 30 años en el ciclo completo de proyectos: inspección de obras, presupuestos (APU) y ejecución</dd>
+        </div>
+        <div>
+          <dt>La firma</dt>
+          <dd>Al frente de <b>Inversiones Geconinpro I.G. 966 C.A.</b> (fundada en 2005): gerencia, construcción, inspección y proyectos</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="cta-final" id="contacto" aria-labelledby="cta-title">
+  <div class="wrap">
+    <p class="kicker rv">Agenda tu evaluación</p>
+    <h2 class="rv rv-d1" id="cta-title">Cuéntanos qué daños tiene tu vivienda. <em>Te respondemos con un presupuesto formal.</em></h2>
+    <p class="lead rv rv-d2" style="text-align:center">Escríbenos por WhatsApp con fotos de las grietas y te orientamos desde el primer mensaje. Atendemos Caracas y todo el territorio nacional.</p>
+    <p class="rv rv-d2">
+      <a class="btn btn-wa" href="https://wa.me/584142352430?text=Hola%2C%20vi%20su%20p%C3%A1gina%20y%20necesito%20una%20evaluaci%C3%B3n%20de%20da%C3%B1os%20estructurales." target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.7 6L4 29l8.2-1.6c1.2.6 2.5.9 3.8.9 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.2 0-2.4-.3-3.5-.8l-.5-.3-4.9 1 1-4.7-.3-.5c-1-1.6-1.5-3.4-1.5-5.4 0-5.4 4.4-9.8 9.8-9.8s9.8 4.4 9.8 9.8-4.5 9.7-9.9 9.7zm5.4-7.3c-.3-.1-1.7-.9-2-1s-.5-.1-.7.1c-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1s-1.2-.5-2.3-1.4c-.9-.8-1.4-1.7-1.6-2s0-.4.1-.6c.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5s0-.4 0-.5-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>
+        Escríbenos por WhatsApp
+      </a>
+    </p>
+    <div class="cta-contacts rv">
+      <p><b>Teléfono</b><a href="tel:+584142352430">0414-235-24-30</a></p>
+      <p><b>Correo</b><a href="mailto:fjlarez566@gmail.com">fjlarez566@gmail.com</a></p>
+      <p><b>Ubicación</b>Caracas, Venezuela</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <svg class="glogo" viewBox="0 0 560 132" role="img" aria-label="Inversiones Geconinpro I.G. 966 C.A. — Gerencia, Construcción, Inspección y Proyectos" font-family="Inter, Arial, Helvetica, sans-serif">
+      <rect x="8"  y="52" width="15" height="62"  fill="#9A9188"/>
+      <rect x="27" y="30" width="17" height="84"  fill="#D96C2C"/>
+      <rect x="48" y="14" width="19" height="100" fill="#B14E1E"/>
+      <rect x="71" y="42" width="15" height="72"  fill="#6E655A"/>
+      <text x="112" y="34" font-size="14" letter-spacing="5" fill="#7A7163" font-weight="600" textLength="150" lengthAdjust="spacingAndGlyphs">INVERSIONES</text>
+      <text x="110" y="76" font-size="31" fill="#211D17" font-weight="700" textLength="424" lengthAdjust="spacingAndGlyphs">GECONINPRO I.G. 966 C.A.</text>
+      <rect x="110" y="86" width="424" height="2.5" fill="#B14E1E"/>
+      <text x="112" y="114" font-size="16.5" fill="#4C453B" font-weight="500" textLength="370" lengthAdjust="spacingAndGlyphs">Gerencia, Construcción, Inspección y Proyectos.</text>
+    </svg>
+    <span>RIF J-29893352-6 · Caracas, Venezuela · <a href="tel:+584142352430" style="font-weight:650;color:var(--ink)">0414-235-24-30</a> · <a href="https://instagram.com/geconinpro" target="_blank" rel="noopener" style="font-weight:650;color:var(--clay)">@geconinpro</a></span>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/584142352430?text=Hola%2C%20vi%20su%20p%C3%A1gina%20y%20necesito%20una%20evaluaci%C3%B3n%20de%20da%C3%B1os%20estructurales." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <span class="pulse" aria-hidden="true"></span>
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.7 6L4 29l8.2-1.6c1.2.6 2.5.9 3.8.9 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.2 0-2.4-.3-3.5-.8l-.5-.3-4.9 1 1-4.7-.3-.5c-1-1.6-1.5-3.4-1.5-5.4 0-5.4 4.4-9.8 9.8-9.8s9.8 4.4 9.8 9.8-4.5 9.7-9.9 9.7zm5.4-7.3c-.3-.1-1.7-.9-2-1s-.5-.1-.7.1c-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1s-1.2-.5-2.3-1.4c-.9-.8-1.4-1.7-1.6-2s0-.4.1-.6c.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5s0-.4 0-.5-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>
+</a>
+
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* header shadow on scroll */
+  var mast = document.querySelector("header.masthead");
+  var onScroll = function(){ mast.classList.toggle("scrolled", window.scrollY > 8); };
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  var reveals = document.querySelectorAll(".rv");
+  var counters = document.querySelectorAll("[data-count]");
+
+  /* animated counters */
+  function runCounter(el){
+    var end = parseInt(el.getAttribute("data-count"), 10);
+    var start = parseInt(el.textContent, 10) || 0;
+    if (reduced){ el.textContent = end; return; }
+    var dur = 1100, t0 = null;
+    function step(t){
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(start + (end - start) * eased);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if (reduced || !("IntersectionObserver" in window)){
+    reveals.forEach(function(el){ el.classList.add("in"); });
+    counters.forEach(function(el){ el.textContent = el.getAttribute("data-count"); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("in");
+      io.unobserve(entry.target);
+    });
+  }, {threshold: 0.12, rootMargin: "0px 0px -6% 0px"});
+  reveals.forEach(function(el){ io.observe(el); });
+
+  /* safety net: some browsers delay the first observer callback —
+     reveal anything already inside the viewport now, on load and shortly after */
+  function revealVisible(){
+    reveals.forEach(function(el){
+      if (el.classList.contains("in")) return;
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.98){
+        el.classList.add("in");
+        io.unobserve(el);
+      }
+    });
+  }
+  revealVisible();
+  window.addEventListener("load", revealVisible);
+  setTimeout(revealVisible, 900);
+
+  var cio = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      runCounter(entry.target);
+      cio.unobserve(entry.target);
+    });
+  }, {threshold: 0.6});
+  counters.forEach(function(el){ cio.observe(el); });
+})();
+</script>
+
+</body>
+</html>
