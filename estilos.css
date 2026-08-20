@@ -555,3 +555,29 @@ nav.mainnav a.actual{color:var(--clay);border-bottom-color:var(--clay)}
 .client-index .ctype{text-align:left}
 .eng-sign .who,.eng-facts div,.eng-facts dd,.cta-contacts>*,.svc-row>*,.client-index li>*{min-width:0}
 .cta-contacts{grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))}
+
+/* ---------- cómo llegamos al número (el formulario como diferenciador) ---------- */
+.como{margin-top:clamp(2.5rem,5vw,3.5rem);padding-top:clamp(2rem,4vw,2.6rem);border-top:1px solid var(--rule)}
+.como-titulo{font-size:clamp(1.4rem,2.6vw,1.9rem);margin-bottom:clamp(1.4rem,3vw,2rem)}
+.pasos{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.4rem,3vw,2.6rem);counter-reset:paso}
+.pasos li{
+  counter-increment:paso;position:relative;padding-top:2.9rem;
+  font-size:.95rem;color:var(--ink-soft);min-width:0;
+}
+.pasos li::before{
+  content:counter(paso);position:absolute;top:0;left:0;
+  width:2.1rem;height:2.1rem;border-radius:50%;
+  border:1px solid var(--clay);color:var(--clay);
+  font-family:var(--serif);font-size:1rem;font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+}
+.pasos li b{display:block;color:var(--ink);font-weight:650;margin-bottom:.3rem}
+.como-pie{
+  margin-top:clamp(1.6rem,3vw,2.2rem);font-family:var(--serif);font-style:italic;
+  font-size:clamp(1.05rem,2vw,1.35rem);color:var(--clay);max-width:26em;
+}
+@media (max-width:800px){
+  .pasos{grid-template-columns:1fr;gap:1.6rem}
+  .pasos li{padding-top:0;padding-left:3rem}
+  .pasos li::before{top:-.15rem}
+}
