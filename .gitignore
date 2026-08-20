@@ -4,3 +4,7 @@ variant-c.html
 variant-d.html
 index-v1-backup.html
 .DS_Store
+
+# Notas internas del proyecto. El repositorio es PÚBLICO: esto nunca se sube.
+# Si trabaja alguien más, se le pasa el archivo por fuera (WhatsApp o correo).
+CLAUDE.md
